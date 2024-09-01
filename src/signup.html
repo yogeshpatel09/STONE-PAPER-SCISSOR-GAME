@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+</head>
+<body class="w-full">
+  <div class="flex w-full justify-center h-screen ">
+    <div class="sm:flex sm:w-full sm:bg-[#DB2777] sm:rounded-r-[110px] ">
+
+    </div>
+    <div class="flex w-full h-screen justify-center items-center">
+      <div class="w-[62%] m-13">
+        <h1 class="text-center text-2xl font-bold">
+          Sign up!!
+        </h1>
+        <p class="text-center mt-3 mb-3">
+          Create your account
+        </p>
+        <form id="Register" class="f">
+          <div class="space-y-2">
+            <label class="m-13" for="firstName">First name</label>
+            <input class="p-5 h-12 w-full border-[1px] bg-[#F8FAFC] border-[#94A3B8] rounded-md" placeholder="First Name" id="firstName" type="text" required>
+          </div>
+          <div class="space-y-2">
+            <label class="m-13" for="lastName">Last name</label>
+            <input class="p-5 h-12 w-full border-[1px] bg-[#F8FAFC] border-[#94A3B8] rounded-md" placeholder="Last Name" id="lastName" type="text" required>
+          </div>
+          <div class="space-y-2">
+            <label class="m-13" for="email">Email</label>
+            <input class="p-5 h-12 w-full border-[1px] bg-[#F8FAFC] border-[#94A3B8] rounded-md" placeholder="Email" id="email" type="email" required>
+          </div>
+          <div class="space-y-2">
+            <label class="m-13" for="password">Password</label>
+            <input class="p-5 h-12 w-full border-[1px] bg-[#F8FAFC] border-[#94A3B8] rounded-md" placeholder="Password" id="password" type="password" required>
+          </div>
+          <div class="space-y-2">
+            <label class="m-13" for="confirm-password" id="confirmpassword">Confirm Password</label>
+            <input class="p-5 h-12 w-full border-[1px] bg-[#F8FAFC] border-[#94A3B8] rounded-md" id="confirm-password" type="text" placeholder="Confirm Password" required>
+          </div>
+          <div class="flex justify-center items-center w-full">
+            <button class="bg-[#DB2777] w-4/12 text-4 h-12 rounded-md text-white" id="submit">Submit</button>
+          </div>
+        </form>
+        <div class="w-[74%] sm:w-full mt-2 flex justify-center">
+          Already have an account?<a href="/src/signin.html" class="underline text-[#DB2777]">login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById("Register").addEventListener('submit', (event) => {
+      event.preventDefault(); 
+
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      const userData = {
+        firstName,
+        lastName,
+        email,
+        password
+      };
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      users.push(userData);
+      localStorage.setItem("users", JSON.stringify(users));
+
+      window.location.href = "/src/signin.html"
+    });
+  </script>
+</body>
+</html>
